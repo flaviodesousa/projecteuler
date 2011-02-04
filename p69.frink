@@ -1,0 +1,29 @@
+largest = 1
+for i = 6 to million
+{
+	phi = i/eulerPhi[i]
+	if phi > largest
+	{
+		largest = phi
+		println["$i: $phi"]
+	}
+}
+println["Finished with $largest"]
+for i = 6 to million
+{
+	c=1
+	t=floor[sqrt[i]]
+	for j = 2 to i-1
+	{
+		if gcd[i,j] == 1
+			c = c + 1
+	}
+	phi = i / c
+	if phi > largest
+	{
+		largest = phi
+		println["$i: $phi ($largest)"]
+	}
+	if i mod 10000 == 0
+		println["at $i"]
+}

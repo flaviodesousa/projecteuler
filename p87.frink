@@ -1,0 +1,44 @@
+visited = new set
+top = fifty million
+cnt = 0
+dupes = 0
+p4 = 2
+p4c = p4*p4*p4*p4
+bp4 = 1
+while p4c < top
+{
+	bp3 = 1
+	p3 = nextPrime[bp3]
+	p3c = p3*p3*p3
+	sum34 = p4c + p3c
+	while sum34 < top
+	{
+		bp2 = 1
+		p2 = nextPrime[bp2]
+		p2c = p2*p2
+		sum234 = sum34 + p2c
+		while sum234 < top
+		{
+			if visited.contains[sum234]
+				dupes = dupes + 1
+			else
+				cnt = cnt + 1
+			if cnt mod 10000 == 0 or (cnt < 10) // or (p2 < 10)
+				println["$cnt($dupes): $p2 $p3 $p4 $sum234"]
+			visited.put[sum234]
+			bp2 = p2
+			p2 = nextPrime[bp2]
+			p2c = p2*p2
+			sum234 = sum34 + p2c
+		}
+		bp3 = p3
+		p3 = nextPrime[bp3]
+		p3c = p3*p3*p3
+		sum34 = p3c + p4c
+	}
+	bp4 = p4
+	p4 = nextPrime[bp4]
+	p4c = p4*p4*p4*p4
+}
+
+println["Finished with $cnt"]

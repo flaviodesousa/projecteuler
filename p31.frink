@@ -1,0 +1,45 @@
+ways=0
+for p200=0 to 1
+{
+x200=p200*200
+for p100=0 to 2
+{
+x100=p100*100
+if x200+x100 > 200
+	break
+for p50=0 to 4
+{
+x50=p50*50
+if x200+x100+x50 > 200
+	break
+for p20=0 to 10
+{
+x20=p20*20
+if x200+x100+x50+x20 > 200
+	break
+for p10=0 to 20
+{
+x10=p10*10
+if x200+x100+x50+x20+x10 > 200
+	break
+for p5=0 to 40
+{
+x5=p5*5
+if x200+x100+x50+x20+x10+x5 > 200
+	break
+for p2=0 to 100
+{
+x2=p2*2
+if x200+x100+x50+x20+x10+x5+x2 > 200
+	break
+p1 = 200-x200-x50-x20-x10-x5-x2
+if p1 <= 200
+	ways = ways + 1
+}
+}
+}
+}
+}
+}
+}
+println["ways=$ways"]

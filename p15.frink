@@ -1,0 +1,11 @@
+paths[rights, downs] :=
+{
+	if _0 > 20 or _1 > 20
+		return 0
+	if _0 == 20 and _1 == 20
+		return 1
+	return combs[_0,_1+1] + combs[_0+1,_1] + combs[_0+1,_1+1]
+}
+
+c=paths[0,0]
+println["c=$c"]

@@ -1,0 +1,35 @@
+expressionize[n,sm] :=
+{
+	var sma = sm + 0
+	println["wwas $sma $sm"]
+	for [ae] [1,2]
+	{
+		a=parseInt[substr[n,0,ae]]
+		b=parseInt[substr[n,ae,5]]
+		c=parseInt[substr[n,5,10]]
+		if a*b==c and a < b
+		{
+			println["was $sma"]
+			sma=sma+c
+			println["$a x $b = $c -- $sma"]
+		}
+	}
+	return sma
+}
+
+permutate[n,available,so] :=
+{
+	if available == ""
+	{
+		so=expressionize[n,so]
+		return
+	}
+	for i = length[available] to 1 step -1
+	{
+		so=permutate[n + substrLen[available,i-1,1], substr[available,0,i-1] + substr[available,i,9],so]
+	}
+	return so
+}
+
+permutate["","123456789",0]
+println["Finished"]

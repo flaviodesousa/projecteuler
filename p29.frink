@@ -1,0 +1,10 @@
+terms = new dict
+for a = 2 to 100
+for b = 2 to 100
+	terms@(a^b)=1
+
+c=0
+for t keys[terms]
+	c=c+1
+
+println["terms=$c"]

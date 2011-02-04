@@ -1,0 +1,14 @@
+class p64n
+{
+	var number
+
+	new[n] :=
+	{
+		number = n
+	}
+
+	develop[b,d] :=
+	{
+		
+	}
+}

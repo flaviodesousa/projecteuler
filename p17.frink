@@ -1,0 +1,36 @@
+makeHundred[n] :=
+{
+ones = ["","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"]
+tens = ["","ten","twenty","thirty","forty","fifty","sixty","seventy","eighty","ninety"]
+hundreds = ["hundred","thousand"]
+
+	var s
+	var h = n div 100
+	var d = n mod 100
+	var addAnd = "and"
+	if d < 20
+		s = ones@d
+	else
+	{
+		var u = d mod 10
+		d = d div 10
+		println["d=$d u=$u"]
+		s = tens@d + (ones@u)
+	}
+	if h > 0
+	{
+		if s > ""
+			s = "and" + s
+		s = ones@h + "hundred" + s
+	}
+	println["n=$n s=$s"]
+	return s
+}
+
+c=11 // one thousand
+
+for i=1 to 999
+{
+	c=c+length[makeHundred[i]]
+}
+println["c=$c"]

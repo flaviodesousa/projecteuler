@@ -1,0 +1,23 @@
+check[n] :=
+{
+	ns="$n"
+	nsl = char[ns]
+	sort[nsl]
+	nsls = char[nsl]
+	for m = 2 to 6
+	{
+		nm = m*n
+		nms = "$nm"
+		nmsl = char[nms]
+		sort[nmsl]
+		nmsls = char[nmsl]
+		if nmsls <> nsls
+			return 0
+		println["found $m -- $n $nm"]
+	}
+	return 1
+}
+
+x=1
+while check[x] == 0
+	x=x+1

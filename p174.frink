@@ -1,0 +1,46 @@
+l = new array
+for i = 1 to 1 million
+	l@i = 0
+hole = 0
+newFound = true
+while newFound
+{
+	hole = hole + 1
+	width = 0
+	while newFound
+	{
+		newFound = FALSE
+		width = width + 1
+		t = 4 * (width * hole + width * width)
+		if t <= 1 million
+		{
+			//println["t=$t"]
+			l@t = l@t + 1
+			newFound = TRUE
+		}
+	}
+	newFound = width > 1
+}
+println["1:"]
+nn = new array
+for i = 0 to 200
+	nn@i = 0
+println["2:"]
+for i = 1 to 1 million
+{
+	x = l@i
+	if x > 0
+		nn@x = nn@x + 1
+}
+println["3:"]
+sum = 0
+for i = 0 to length[nn] - 1
+{
+	x = nn@i
+	if x == 0
+		next
+	if i < 11
+		sum = sum + x
+	println["i=$i x=$x s=$sum"]
+}
+println["Finished"]

@@ -1,0 +1,29 @@
+testfat[n] :=
+{
+	num = n
+	sum = 0
+	while num > 0
+	{
+		d = num mod 10
+		num = num div 10
+		sum = sum + d!
+	}
+	if sum == n
+	{
+		return n
+	}
+	return 0
+}
+
+x=10
+soma = 0
+while true
+{
+	t = testfat[x]
+	if t > 0
+	{
+		soma = soma + t
+		println["x=$x soma=$soma"]
+	}
+	x=x+1
+}

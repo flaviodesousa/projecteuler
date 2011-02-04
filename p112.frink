@@ -1,0 +1,38 @@
+isBouncy[n] :=
+{
+	var d = [0,0]
+	d@0 = n mod 10
+	var x = 1
+	n = n div 10
+	var ascending = FALSE
+	var descending = FALSE
+	while n > 0
+	{
+		d@x = n mod 10
+		if d@x > d@(1-x)
+			descending = TRUE
+		if d@x < d@(1-x)
+			ascending = TRUE
+		if ascending and descending
+			break
+		n = n div 10
+		x = 1 - x
+	}
+	return ascending and descending
+}
+
+number = 0
+bouncy = 0
+target = 99/100
+ratio = 0
+while ratio != target
+{
+	number = number + 1
+	if isBouncy[number]
+		bouncy = bouncy + 1
+	ratio = bouncy / number
+	if number mod 100000 == 0
+		println["at $number with $bouncy [$ratio]"]
+}
+println["Finished at $number with $bouncy [$ratio]"]
+

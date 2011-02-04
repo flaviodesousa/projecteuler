@@ -1,0 +1,15 @@
+n=1
+p=1
+do
+{
+	n=n+1
+	p=p+n
+	println[factor[p]]
+	divis = 1
+	for [f,d] factor[p]
+	{
+		println["f=$f,d=$d"]
+		divis = divis * (d + 1)
+	}
+	println["n=$n,p=$p,divis=$divis"]
+} while divis<5016

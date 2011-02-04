@@ -1,0 +1,37 @@
+maximum = 10^9
+maxPrime = 100
+bases = new array
+exponents = new array
+last = -1
+p = 2
+while p <= maxPrime
+{
+	last = last + 1
+	bases@last = p
+	exponents@last = 0
+	p = nextPrime[p]
+}
+counter = 1
+digit = 0
+while digit <= last
+{
+	exponents@digit = exponents@digit + 1
+	if exponents@digit == 1 and (digit > 0)
+		for i = 0 to digit - 1
+			exponents@i = 0
+	num = 1
+	for i = 0 to last
+		num = num * (bases@i ^ exponents@i)
+	if num > maximum
+	{
+		//println["blown with $num"]
+		exponents@digit = 0
+		digit = digit + 1
+	} else
+	{
+		counter = counter + 1
+		//println["exponents=$exponents bases=$bases count=$counter num=$num"]
+		digit = 0;
+	}
+}
+println["Finished with $counter"]

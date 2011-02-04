@@ -1,0 +1,12 @@
+i = 7
+s = 2+3+5
+while i < 2_000_000
+{
+	if isPrime[i]
+		s=s+i
+	if i mod 10 == 3
+		i=i+4
+	else
+		i=i+2
+}
+println[s]

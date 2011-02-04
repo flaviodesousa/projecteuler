@@ -1,0 +1,14 @@
+pentagons = new set
+hexagons = new set
+i = 1
+while true
+{
+	triangle = i*(i+1)/2
+	if pentagons.contains[triangle] and hexagons.contains[triangle]
+	{
+		println["found i=$i $triangle"]
+	}
+	pentagons.put[i*(3*i-1)/2]
+	hexagons.put[i*(2*i-1)]
+	i=i+1
+}

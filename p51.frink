@@ -1,0 +1,42 @@
+createPatterns[source,prev,pos,subs,target] :=
+{
+	//println["source=$source prev=$prev pos=$pos"]
+	if pos == length[source] - 1
+		return FALSE
+	var digit = substr[source,pos,pos+1]
+	if createPatterns[source,prev + digit,pos+1,subs,target]
+		return TRUE
+	if parseInt[digit] > 10 - target
+		return FALSE
+	var pattern = prev + "x" + substr[source,pos+1,99]
+	var pat
+	var count = 0
+	var initial
+	if (prev == "") or (left[prev,1] == "x")
+		initial = 1
+	else
+		initial = 0
+	for i = initial to 9
+	{
+		pat = pattern
+		pat =~ subs@i
+		if isPrime[parseInt[pat]]
+			count = count + 1
+		//println["$i $count $pattern $pat"]
+	}
+	if count >= target
+	{
+		println["Found! $source with $pattern"]
+		return TRUE
+	}
+	return createPatterns[source,prev + "x",pos+1,subs,target]
+}
+
+subs = new array
+for i = 0 to 9
+	subs@i = subst["x","$i","g"]
+
+p = 11
+while not createPatterns["$p","",0,subs,8]
+	p=nextPrime[p]
+

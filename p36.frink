@@ -1,0 +1,12 @@
+c=0
+for i = 1 to 1 million
+{
+	d="$i"
+	b=base2[i]
+	if d == reverse[d] and b == reverse[b]
+	{
+		c=c+i
+		println["$c: d=$d b=$b"]
+	}
+}
+println["c=$c"]

@@ -1,0 +1,36 @@
+// 1 2 1 1 4 1 1 6 1 1 8
+// 0 1 2 3 4 5 6 7 8 9 10
+expand[iteration,max] :=
+{
+	if iteration mod 3 == 1
+		term = ((iteration + 2) div 3) * 2
+	else
+		term = 1
+	if iteration == max
+		return term
+	else
+		return term + 1 / expand[iteration+1,max]
+}
+
+digitSum[n] :=
+{
+	var s = 0
+	while n > 0
+	{
+		s = s + n mod 10
+		n = n div 10
+	}
+	return s
+}
+
+app[n] := 
+{
+	x = 2 + 1/expand[0,n]
+	s = digitSum[numerator[x]]
+	println["$n -> $x -> $s"]
+}
+
+app[8]
+app[9]
+app[10]
+app[98]

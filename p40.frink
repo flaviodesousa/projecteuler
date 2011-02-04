@@ -1,0 +1,24 @@
+product=1
+d=10
+pos=0
+c=0
+len=1
+s=""
+do
+{
+	c=c+1
+	if c<1200
+	{
+		s = s + "$c"
+		l = length[s]
+		println["l=$l s=$s"]
+	}
+	len = length["$c"]
+	pos = pos + len
+	if pos >= d
+	{
+		product = product * parseInt[substrLen["$c",len-pos+d-1,1]]
+		println["d=$d pos=$pos c=$c p=$product"]
+		d=10*d
+	}
+} while d <= 1 million

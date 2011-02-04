@@ -1,0 +1,34 @@
+has2factor[n] :=
+{
+	var fs = factor[n]
+	s = 0
+	for [n,p] fs
+	{
+		s = s + p
+		if s > 2
+			return FALSE
+	}
+	return s==2
+}
+
+top = 10^8
+n1 = 2
+c = 0
+while TRUE
+{
+	if n1 > sqrt[top]
+		break
+	n2 = n1
+	while TRUE
+	{
+		p = n1 * n2
+		if p > top
+			break
+		c = c + 1
+		if c mod 10000 == 0
+			println["$n1 $n2 = $p -- $c"]
+		n2 = nextPrime[n2]
+	}
+	n1 = nextPrime[n1]
+}
+println["Finished with $c"]

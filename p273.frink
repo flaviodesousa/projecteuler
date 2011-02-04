@@ -1,0 +1,9 @@
+primes4kplus1 = []
+
+findPrimes[] :=
+{
+	var l = []
+	for i = 1 to ceil[149/4]
+		if isPrime[4*i+1]
+			l.push[4*i+1]
+}

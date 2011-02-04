@@ -1,0 +1,38 @@
+roll[n,m,top,s,a] :=
+{
+	if n == top
+	{
+		a@s = a@s + 1
+		return
+	}
+	for i = 1 to m
+	{
+		roll[n+1,m,top,s+i,a]
+	}
+}
+
+d4 = new array
+for i = 0 to 36
+	d4@i=0
+d6 = new array
+for i = 0 to 36
+	d6@i = 0
+
+roll[0,4,9,0,d4]
+println["d4=$d4"]
+roll[0,6,6,0,d6]
+println["d6=$d6"]
+wins = 0
+losesDraws = 0
+for i = 9 to 36
+{
+	for j = 6 to 36
+	{
+		if i > j
+			wins = wins + d6@j * d4@i
+		else
+			losesDraws = losesDraws + d6@j * d4@i
+	}
+}
+result = wins / (wins + losesDraws)
+println["$result / $wins / $losesDraws"]

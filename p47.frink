@@ -1,0 +1,46 @@
+checkDistinct[f,qt] :=
+{
+	factors = []
+	for i = 0 to qt - 1
+	{
+		factors@i = new set
+		for [fac,pow] factor[f@i]
+			(factors@i).put["$fac^$pow"]
+	}
+	for i = 1 to qt - 1
+		for [fac] factors@i
+			for j = 0 to i - 1
+				(factors@j).remove[fac]
+	for i = 0 to qt - 1
+	{
+		x=factors@i
+		println["factors@$i = $x"] 
+		if length[factors@i] < qt
+			return FALSE
+	}
+	return TRUE
+}
+
+factors = []
+current = 0
+qt = 4
+n = 2
+lastPrime = 0
+while TRUE
+{
+	if n mod 1000 == 0
+		println["at $n"]
+	if isPrime[n]
+	{
+		lastPrime = n
+	}
+	factors@current = n
+	if lastPrime + qt - 1 < n
+	{
+		if checkDistinct[factors, qt]
+			break
+	}
+	n = n + 1
+	current = (current + 1) mod qt
+}
+println["Found at $n (last of $qt)"]

@@ -1,0 +1,32 @@
+
+permutate[n,available,so] :=
+{
+	if available == ""
+	{
+		nv=parseInt[n]
+		d17 = nv               mod 1000 mod 17 == 0
+		d13 = nv div 10        mod 1000 mod 13 == 0
+		d11 = nv div 100       mod 1000 mod 11 == 0
+		d7  = nv div 1_000     mod 1000 mod  7 == 0
+		d5  = nv div 10_000    mod 1000 mod  5 == 0
+		d3  = nv div 100_000   mod 1000 mod  3 == 0
+		d2  = nv div 1 million mod 1000 mod  2 == 0
+		if d2 and d3 and d5 and d7 and d11 and d13 and d17
+		{
+			so = so + nv
+			println["Found $nv s=$so"]
+		}
+		return so
+	}
+	if length[n] == 4 and parseInt[right[n,1]] mod 2 == 1
+		return so
+	for i = length[available] to 1 step -1
+	{
+		so=permutate[n + substrLen[available,i-1,1], substr[available,0,i-1] + substr[available,i,99],so]
+	}
+	return so
+}
+
+// permutate["1406357289","",0]
+permutate["","0123456789",0]
+println["Finished"]

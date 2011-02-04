@@ -1,0 +1,27 @@
+maxsolutions = 0
+for p=3 to 1000
+{
+	solutions=0
+	for c=p-2 to 3 step -1
+	{
+		base = c-1
+		lower = floor[base div 2]
+		for b=c-1 to 1 step -1
+		{
+			a=p-c-b
+			//println["$p $a $b $c"]
+			if a > b
+				break
+			if a*a+b*b==c*c and a>0 and b>0
+			{
+				println["$solutions p=$p $a+$b=$c"]
+				solutions=solutions+1
+			}
+		}
+	}
+	if solutions > maxsolutions
+	{
+		println["    p=$p $solutions solutions"]
+		maxsolutions=solutions
+	}
+}

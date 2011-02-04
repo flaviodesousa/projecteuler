@@ -1,0 +1,8 @@
+cnt=0
+for c=1 to 100
+for d=1 to c
+	if c!/d!/(c-d)! > 1 million
+	{
+		cnt = cnt + 1
+		println["$cnt $c $d"]
+	}

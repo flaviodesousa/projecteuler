@@ -1,0 +1,30 @@
+bigger[triangle,row,col] :=
+{
+	if row == 100
+		return 0
+	return triangle@row@col + max[bigger[triangle,row+1,col],bigger[triangle,row+1,col+1]]
+}
+
+triangle = []
+row = 0
+println["loading..."]
+for [line] lines["file:///D:\\Users\\fssousa\\Desktop\\projecteuler\\triangle.txt"]
+{
+	println["l=$line r=$row"]
+	triangle@row = []
+	col=0
+	for [num] line =~ %r/(\d\d)/g
+	{
+		triangle@row@col = parseInt[num]
+		println["n=$num row=$row col=$col"]
+		col=col+1
+	}
+	row = row + 1
+}
+
+println[triangle@0]
+println[triangle@1]
+
+big = bigger[triangle,0,0]
+
+println["big=$big"]

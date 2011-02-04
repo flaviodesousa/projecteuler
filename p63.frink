@@ -1,0 +1,11 @@
+cnt=0
+for n = 1 to 200
+for c = 1 to 100
+{
+	x=c^n
+	if length["$x"] == n
+	{
+		cnt = cnt + 1
+		println["$cnt Found $n $c $x"]
+	}
+}

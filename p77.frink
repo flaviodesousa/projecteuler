@@ -1,0 +1,26 @@
+combineSums[target,min,partial,terms,count] :=
+{
+	//println["t=$target, m=$min, p=$partial, terms=$terms, c=$count"]
+	if partial == target
+	{
+		if terms > 1
+		{
+			return count + 1
+		} else
+			return count
+	}
+	var n = max[min,2]
+	while partial + n <= target
+	{
+		count = combineSums[target,n,partial+n,terms+1,count]
+		n = nextPrime[n]
+	}
+	return count
+}
+var lastOne = 1000
+var c
+for i = 0 to lastOne
+{
+	c = combineSums[i,0,0,0,0]
+	println["$i -> $c"]
+}

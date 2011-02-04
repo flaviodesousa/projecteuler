@@ -1,0 +1,31 @@
+generated = new set
+maximum = 10 ^ 8
+//maximum = 1000
+sum = 0
+for top = 2 to 10000
+{
+	for bottom = top -1 to 1 step -1
+	{
+		sqsum = 0
+		for n = bottom to top
+		{
+			sqsum = sqsum + n^2
+		}
+		if sqsum >= maximum
+			break
+		strsqsum = "$sqsum"
+		if strsqsum == reverse[strsqsum]
+		{
+			if generated.contains[strsqsum]
+			{
+				println["Duplicated $strsqsum"]
+			} else
+			{
+				generated.put[strsqsum]
+				sum = sum + sqsum
+				println["sum=$sum sqsum=$sqsum bottom=$bottom top=$top"]
+			}
+		}
+	}
+}
+println["Finished with sum=$sum"]

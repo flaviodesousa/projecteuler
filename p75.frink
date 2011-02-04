@@ -1,0 +1,33 @@
+maxP = 1_500_000
+used = new array
+for i = 0 to maxP
+	used@i = 0
+m = 2
+maxM = 2*sqrt[maxP] + 1
+while m <= maxM
+{
+	n = 1
+	while TRUE
+	{
+		a = abs[m*m-n*n]
+		b = 2*n*m
+		c = m*m+n*n
+		p = a + b + c
+		if a + b + c <= maxP
+		{
+			used@p = used@p + 1
+			//println["$cnt: Found $a $b $c [$m $n] $p"]
+		}
+		n = n + 1
+		if n >= m
+			break
+	}
+	println["Searched m=$m"]
+	m = m + 1
+
+}
+cnt = 0
+for i = 0 to maxP
+	if used@i == 1
+		cnt = cnt + 1
+println["Finished with $cnt"]

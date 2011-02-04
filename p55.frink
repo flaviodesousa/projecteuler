@@ -1,0 +1,27 @@
+lychrel[n,it] :=
+{
+	if it > 200
+		return 0
+	var r = parseInt[reverse["$n"]]
+	var s = n + r
+	var ss= "$s"
+	println["  $n -> $ss ($it)"]
+	if ss == reverse[ss]
+	{
+		println["Found $ss ($it)"]
+		return it
+	}
+	return lychrel[s,it+1]
+}
+
+cnt=0
+for i=1 to 9_999
+{
+	iter = lychrel[i,1]
+	if iter == 0
+	{
+		cnt=cnt+1
+		println["$cnt: $i"]
+	}
+}
+println["cnt=$cnt"]

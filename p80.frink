@@ -1,0 +1,43 @@
+mySqrt[n,lowGuess,hiGuess] :=
+{
+	//println["$n $lowGuess $hiGuess"]
+	average = round[(hiGuess + lowGuess) / 2,1]
+	if hiGuess - lowGuess < 10
+		return average
+	if average*average < n
+		lowGuess = average
+	else
+		hiGuess = average
+	return mySqrt[n,lowGuess,hiGuess]
+}
+
+digitSum[n] :=
+{
+	var s = 0
+	while n > 0
+	{
+		s = s + n mod 10
+		n = n div 10
+	}
+	return s
+}
+
+digits = 100
+safeDigits = digits + 20
+totalSum = 0
+for i = 2 to 100
+{
+	realRoot = sqrt[i]
+	if realRoot^2 == i
+		next
+	low = floor[(realRoot-5*10^(-12))*10^safeDigits]
+	high = ceil[(realRoot+5*10^(-12))*10^safeDigits]
+	r = mySqrt[i*10^(2*safeDigits),low,high]
+	rs = "$r"
+	decimals = parseInt[left[right[rs,safeDigits],digits]]
+	decimals = parseInt[left[rs,digits]]
+	sumdigits = digitSum[decimals]
+	println["i=$i sum=$sumdigits r=$r d=$decimals"]
+	totalSum = totalSum + sumdigits
+}
+println["Finished with $totalSum"]

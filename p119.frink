@@ -1,0 +1,35 @@
+digitsum[n] :=
+{
+	var sum = 0
+	while n > 0
+	{
+		sum = sum + (n mod 10)
+		n = n div 10
+	}
+	return sum
+}
+
+solutions = new array
+c = 0
+for base = 2 to 1000
+for power = 2 to 40
+{
+	num = base ^ power
+	s = digitsum[num]
+	//println["base=$base power=$power num=$num s=$s"]
+	if s == base
+	{
+		c = c + 1
+		println["$c num=$num base=$base power=$power"]
+		solutions.push[num]
+	}
+}
+println["Sorting..."]
+sort[solutions]
+for i = 0 to 40
+{
+	c = i + 1
+	num = solutions@i
+	println["$c $num"]
+}
+println["Finished"]

@@ -1,0 +1,43 @@
+convergence = []
+for i = 1 to 999
+	convergence@i = 0
+
+sumSquaredDigits[n] :=
+{
+	var s = 0
+	while n > 0
+	{
+		s = s + (n mod 10)^2
+		n = n div 10
+	}
+	return s
+}
+
+convergesTo89[n,convergence] :=
+{
+	if n < 1000 and convergence@n > 0
+		return (convergence@n == 89)
+	if n == 89
+		result = TRUE
+	else 
+		if n == 1
+			result = FALSE
+		else
+			result = convergesTo89[sumSquaredDigits[n],convergence]
+	if result and (n < 1000)
+		convergence@n = result
+	return result
+}
+
+cnt = 0
+for i = 1 to 9_999_999
+{
+	if i mod 100_000 == 0
+		println["by $i I have $cnt"]
+	if convergesTo89[i,convergence]
+	{
+		cnt = cnt + 1
+		// println["$cnt $i"]
+	}
+}
+println["Finished with $cnt"]

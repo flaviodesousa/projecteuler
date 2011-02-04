@@ -1,0 +1,45 @@
+divs[lista,fatores,parcial,nivel] :=
+{
+	nova_lista = lista.shallowCopy[]
+	if nivel >= length[fatores]
+	{
+		nova_lista.push[parcial]
+		return nova_lista
+	}
+	for i = 0 to fatores@nivel@1
+	{
+		nova_lista = divs[nova_lista,fatores,parcial*fatores@nivel@0^i,nivel+1]
+	}
+	return nova_lista
+}
+
+divisores[n] :=
+{
+	ldivs = divs[[],factor[n],1,0]
+	sort[ldivs]
+	ldivs.pop[]
+	return ldivs
+}
+
+soma[lista_soma] :=
+{
+	soma0 = 0;
+	for [n] lista_soma
+		soma0 = soma0 + n
+	return soma0
+}
+
+s=0
+for num = 200 to 10000
+{
+	s1 = soma[divisores[num]]
+	if s1 > num and s1 < 10000
+	{
+		s2 = soma[divisores[s1]]
+		if s2 == num
+		{
+			s = s + num + s1
+			println["p=($num,$s1) s=$s"]
+		}
+	}
+}

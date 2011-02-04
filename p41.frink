@@ -1,0 +1,21 @@
+permutate[n,available] :=
+{
+	if available == ""
+	{
+		if isPrime[parseInt[n]]
+			println["Found $n"]
+		return
+	}
+	for i = length[available] to 1 step -1
+	{
+		permutate[n + substrLen[available,i-1,1], substr[available,0,i-1] + substr[available,i,9]]
+	}
+}
+
+permutate["","123456789"]
+permutate["","12345678"]
+permutate["","1234567"]
+permutate["","123456"]
+permutate["","12345"]
+permutate["","1234"]
+println["Finished"]

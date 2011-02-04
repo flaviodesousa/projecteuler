@@ -1,0 +1,53 @@
+class p81
+{
+	var matrix
+	var cache
+
+	new[] :=
+	{
+		matrix = new array
+		cache = new array
+	}
+
+	load[] :=
+	{
+		row = 0
+		for [line] lines["file:///D:/Users/fssousa/Desktop/projecteuler/matrix.txt"]
+		{
+			matrix@row = split[%r/,/, line]
+			cache@row = new array
+			for col = 0 to 79
+			{
+				matrix@row@col = parseInt[matrix@row@col]
+				cache@row@col = -1
+			}
+			row = row + 1
+		}
+	}
+
+	lowestSum[i,j] :=
+	{
+		if (i > 79) or (j > 79)
+			return -1
+		c = cache@i@j
+		println["[$i,$j] -> $c"]
+		if cache@i@j > 0
+			return cache@i@j
+		vh = lowestSum[i+1,j]
+		vv = lowestSum[i,j+1]
+		m = matrix@i@j
+		v = m
+		if (vh > vv or vh == -1) and vv > -1
+			v = m + vv
+		if (vh < vv or vv == -1) and vh > -1
+			v = m + vh
+		println["$i,$j -> $m + [$vh, $vv] -> $v"]
+		cache@i@j = v
+		return cache@i@j
+	}
+}
+
+x = new p81
+x.load[]
+v = x.lowestSum[0,0]
+println["Finished with $v"]

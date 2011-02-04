@@ -1,0 +1,33 @@
+func[a,n] := ((a-1)^n+(a+1)^n) mod (a^2)
+
+maxRemainder[a] :=
+{
+	var maxr = -1
+	var r
+	var n = 1
+	var wins = 0
+	var maxfight = 0
+	while wins < 1200
+	{
+		r = func[a,n]
+		if r > maxr
+		{
+			if wins > maxfight
+				maxfight = wins
+			wins = 0
+			maxr = r
+		}
+		n = n + 1
+		wins = wins + 1
+	}
+	println["  a=$a n=$n r=$r wins=$wins maxfight=$maxfight"]
+	return maxr
+}
+
+s=0
+for a = 3 to 1000
+{
+	rm = maxRemainder[a]
+	s = s + rm
+	println["a=$a rmax=$rm s=$s"]
+}

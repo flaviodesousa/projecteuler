@@ -1,0 +1,7 @@
+finish = million
+ct = 0
+for den=2 to finish
+{
+	ct = ct + eulerPhi[den]
+}
+println["Finished with $ct"]

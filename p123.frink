@@ -1,0 +1,14 @@
+r[p,n] := ((p-1)^n+(p+1)^n) mod (p*p)
+target = 10^10
+n = 1
+p = 2
+re = r[p,n]
+println["n=$n p=$p"]
+
+while re <= target
+{
+	n = n + 1
+	p = nextPrime[p]
+	re = r[p,n]
+}
+println["n=$n p=$p r=$re"]

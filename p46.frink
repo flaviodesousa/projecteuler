@@ -1,0 +1,21 @@
+i=9
+while TRUE
+{
+	if isPrime[i]
+		continue
+		//println["Prime $i"]
+	p=2
+	while p < i
+	{
+		c = floor[sqrt[(i - p) / 2]]
+		if p + 2*c*c == i
+		{
+			//println["Found $i = $p + 2 * $c * $c"]
+			break
+		}
+		p = nextPrime[p]
+	}
+	if p > i
+		println["-------Not found for $i"]
+	i=i+2
+}

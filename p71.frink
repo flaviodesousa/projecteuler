@@ -1,0 +1,16 @@
+top = 3/7
+bottom = 1/7
+for den = 1 to 1_000_000
+{
+	if den mod 10000 == 0
+		println["at $den"]
+	num = (3 * den / 7) - 1
+	n = num / den
+	if n > bottom and (n < top)
+	{
+		//println["at $den -> $num / $den = $n"]
+		bottom = n
+	}
+}
+
+println["Finished with b=$bottom"]

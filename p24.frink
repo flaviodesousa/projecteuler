@@ -1,0 +1,19 @@
+permutate[base, pos, c] :=
+{
+	if pos == 11
+	{
+		c=c+1
+		if c==1 million or c < 100 or c mod 10000 == 1
+			println["$c $base"]
+		return c
+	}
+	for i=0 to 9
+	{
+		if indexOf[base,"$i"] == -1
+			c=permutate["$base$i", pos+1,c]
+	}
+	return c
+}
+
+base=""
+contagem=permutate["",1,0]

@@ -1,0 +1,63 @@
+class p113
+{
+	var counter
+	var memoryAsc
+	var memoryDesc
+
+	new[] :=
+	{
+		counter = 0
+		memoryAsc = new array
+		memoryDesc = new array
+		for i = 0 to 100
+		{
+			memoryAsc@i = new array
+			memoryDesc@i = new array
+			for j = 0 to 9
+			{
+				memoryAsc@i@j = -1
+				memoryDesc@i@j = -1
+			}
+		}
+	}
+
+	searchAsc[pos, min, len] :=
+	{
+		if memoryAsc@pos@min > -1
+			return memoryAsc@pos@min
+		if pos == len
+			return 1
+		m = 0
+		for new_min = min to 9
+			m = m + searchAsc[pos + 1, new_min, len]
+		memoryAsc@pos@min = m
+		return m
+	}
+
+	searchDesc[pos,max,len] :=
+	{
+		if memoryDesc@pos@max > -1
+			return memoryDesc@pos@max
+		if pos == len
+			return 1
+		m = 0
+		if pos == 0
+			min = 1
+		else
+			min = 0
+		for new_max = max to min step -1
+			m = m + searchDesc[pos + 1, new_max, len]
+		memoryDesc@pos@max = m
+		return m
+	}
+}
+
+maxd = 6
+q = 0
+for i = 1 to maxd
+{
+	x = new p113
+	q = q + x.searchAsc[0,1,i]
+	q = q + x.searchDesc[0,9,i]
+	println["$i -> $q"]
+}

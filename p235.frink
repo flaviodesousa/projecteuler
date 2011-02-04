@@ -1,0 +1,28 @@
+u[k,r] := (900-3*k)*r^(k-1)
+s[r] :=
+{
+	var sum = 0.0
+	var i
+	for i = 1 to 5000
+		sum = sum + u[i,r]
+	d = sum + 6.0e11
+	println["r=$r sum=$sum d=$d"]
+	return -sum
+}
+target = 6e11
+println["---"]
+s[1.00230]
+s[1.00235]
+bottom = 1.0023
+top = 1.00235
+do
+{
+	x = (top + bottom) / 2.0
+	v = s[x]
+	if v > target
+		top = x
+	if v < target
+		bottom = x
+	println["v=$v top=$top bottom=$bottom t=$target"]
+} while abs[top - bottom] > 10^(-14)
+println["Finished with x=$x"]

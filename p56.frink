@@ -1,0 +1,22 @@
+digitalSum[n] :=
+{
+	var s=0
+	while n > 0
+	{
+		s = s + n mod 10
+		n = n div 10
+	}
+	return s
+}
+
+max = 0
+for a = 2 to 100
+for b = 1 to 100
+{
+	s = digitalSum[a ^ b]
+	if s > max
+	{
+		max = s
+		println["$a ^ $b -> $s"]
+	}
+}

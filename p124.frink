@@ -1,0 +1,21 @@
+rad[n] :=
+{
+	var s = 1
+	for [b,e] factor[n]
+		s = s * b
+	return s
+}
+
+list = new array
+list@0 = ""
+for i = 1 to 100_000
+{
+	ix = 100_000_000 + rad[i]
+	ii = 100_000_000 + i
+	list@i = "$ix/$ii"
+}
+list = sort[list]
+e4 = list@4
+e6 = list@6
+e = list@10000
+println["$e4 $e6 e=$e"]

@@ -1,0 +1,80 @@
+abundants = []
+
+divs[lista,fatores,parcial,nivel] :=
+{
+	nova_lista = lista.shallowCopy[]
+	if nivel >= length[fatores]
+	{
+		nova_lista.push[parcial]
+		return nova_lista
+	}
+	for i = 0 to fatores@nivel@1
+	{
+		nova_lista = divs[nova_lista,fatores,parcial*fatores@nivel@0^i,nivel+1]
+	}
+	return nova_lista
+}
+
+divisores[n] :=
+{
+	ldivs = divs[[],factor[n],1,0]
+	sort[ldivs]
+	ldivs.pop[]
+	return ldivs
+}
+
+soma[lista_soma] :=
+{
+	soma0 = 0;
+	for [n] lista_soma
+		soma0 = soma0 + n
+	return soma0
+}
+
+findAbundants[upTo] :=
+{
+	abundants = []
+	for i = 2 to upTo
+	{
+		somaab = soma[divisores[i]]
+		if somaab > i
+			abundants.push[i]
+	}
+
+	return abundants
+}
+
+abundants = findAbundants[28123]
+qab = length[abundants]
+println["$qab abundants"]
+
+sumofsums = 0
+
+for i = 1 to 30000
+{
+	if i mod 100 == 0
+		println["at $i"]
+	found = true
+	ABUNDANTFOUND:
+	for [i1] abundants
+	{
+		if i1 > i
+			break
+		for [i2] abundants
+		{
+			//println["$i -> $i1 $i2"]
+			if i1 + i2 == i
+			{
+				found = false
+				break ABUNDANTFOUND
+			}
+			if i1 + i2 > i
+				break
+		}
+	}
+	if found
+	{
+		sumofsums = sumofsums + i
+		println["$i is not sum of abundants! s=$sumofsums"]
+	}
+}

@@ -1,0 +1,64 @@
+complete[s] :=
+{
+	if indexOf[s, "0"] >= 0
+	if indexOf[s, "1"] >= 0
+	if indexOf[s, "A"] >= 0
+		return TRUE
+	return FALSE
+}
+numbers[s] :=
+{
+	var n = 1
+	for c = charList[s]
+	{
+		if c == "X"
+			n = n * 16
+		if c == "x"
+			n = n * 15
+	}
+	return n
+}
+build[current, available, sum] :=
+{
+	var n
+	var newAvailable
+	var a
+	var others
+	var newCurrent
+
+	println["1: $current, $available, $sum"]
+	if length[current] > 16
+		return sum
+	for a = charList[available]
+	{
+		if current == ""
+		{
+			if a == "X"
+				a = "x"
+			if a == "0"
+				next
+		}
+		newCurrent = current + a
+		if complete[newCurrent]
+		{
+			n = numbers[newCurrent]
+			sum = sum + n
+			println["$newCurrent n=$n sum=$sum"]
+		}
+		newAvailable = "X"
+		for others = charList[available]
+		{
+			if others == "X"
+				next
+			if others != a
+				newAvailable = newAvailable + others
+		}
+		sum = sum + build[newCurrent, newAvailable, sum]
+	}
+	return sum
+}
+
+var sum = 0
+sum = build["", "01AX", 0]
+hsum = hex[sum]
+println["Finished with $sum ($hsum)"]

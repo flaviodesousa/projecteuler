@@ -1,0 +1,22 @@
+for i = 1 to 998
+{
+	for j = i + 1 to 999
+	{
+		if i + j > 999
+			break
+		k2 = i*i + j*j
+		k = floor[sqrt[k2]]
+		s = i+j+k
+		if s > 1000
+			break
+		if k*k==k2
+		{
+			println["pythagorean $i $j $k = $s"]
+			if s == 1000
+			{
+				println["Found"]
+				println[i*j*k]
+			}
+		}
+	}
+}

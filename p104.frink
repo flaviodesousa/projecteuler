@@ -1,0 +1,47 @@
+pandigital[n] :=
+{
+	used = new array
+	for i = 0 to 9
+		used@i = 0
+	used@0 = 1
+	x = n mod 1000000000
+	if x < 123456789
+		return FALSE
+	while x > 0
+	{
+		d = x mod 10
+		if used@d > 0
+			return FALSE
+		used@d = 1
+		x = x div 10
+	}
+	ns = "$n"
+	begining = left[ns,9]
+	if char[sort[char[begining]]] == "123456789"
+		return TRUE
+	return FALSE	
+}
+
+f0 = 0
+f1 = 1
+k = 1
+
+while TRUE
+{
+	t = f1
+	f1 = f0 + f1
+	f0 = t 
+	k = k + 1
+	if k < 30 or (k mod 100000 == 0)
+		println["at $k"]
+	if pandigital[f1]
+	{
+		f1s = "$f1"
+		l = length[f1s]
+		lf = char[sort[char[left[f1s,9]]]]
+		rt = char[sort[char[right[f1s,9]]]]
+		println["$k $l $lf $rt"]
+		if lt == rt
+			break
+	}
+}

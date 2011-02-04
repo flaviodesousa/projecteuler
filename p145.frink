@@ -1,0 +1,36 @@
+isReversible[n] :=
+{
+	if n mod 10 == 0
+		return FALSE
+	var r = 0
+	var nn = n
+	while nn > 0
+	{
+		r = r * 10 + (nn mod 10)
+		nn = nn div 10
+	}
+	var sm = r + n
+	var s = r + n
+	while s > 0
+	{
+		if s mod 2 == 0
+			return FALSE
+		s = s div 10
+	}
+	//println["$n + $r = $sm"]
+	//if "$sm" != reverse["$sm"]
+	//	println["non reflexive $n + $r = $sm"]
+	return TRUE
+}
+
+cnt = 0
+for i = 1 to 10000000
+{
+	if isReversible[i]
+	{
+		cnt = cnt + 1
+		if cnt mod 1000 == 0
+			println["$cnt: $i"]
+	}
+}
+println["Finished with $cnt"]

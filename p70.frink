@@ -1,0 +1,24 @@
+isPermutation[n,m] :=
+{
+	sn = char[sort[char["$n"]]]
+	sm = char[sort[char["$m"]]]
+	return sn == sm
+}
+
+lesser = 11 million
+for i = 1 to 10 million
+{
+	if i mod 100_000 == 0
+		println["at $i"]
+	t = eulerPhi[i]
+	if isPermutation[i,t]
+	{
+		q = i/t
+		if q < lesser
+		{
+			lesser = q
+			println["$i $t $q"]
+		}
+	}
+}
+println["Finished with $lesser"]

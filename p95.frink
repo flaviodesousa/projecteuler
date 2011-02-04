@@ -1,0 +1,41 @@
+divisorSum[n] :=
+{
+	var f = factor[n]
+	var l = length[f] - 1
+	var exp = new array
+	var sum = 0
+	var e
+	var digit = 0
+	var num
+
+	for e = 0 to l
+		exp@e = 0
+	while digit <= l
+	{
+		num = 1
+		for e = 0 to l
+			num = num * f@e@0 ^ exp@e
+		sum = sum + num
+
+		if exp@digit < f@digit@1
+		{
+			exp@digit = exp@digit + 1
+		} else
+		{
+			exp@digit = 0
+			digit = digit + 1
+			if digit <= l
+			{
+				if exp@digit == 0
+				{
+					for e = 0 to digit - 1
+					exp@digit = 0
+				}
+				exp@digit = exp@digit + 1
+			}
+		}
+	}
+}
+cycles = new array
+for i = 1 to 1 million
+	cycles@i = 0

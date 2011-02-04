@@ -1,0 +1,25 @@
+pent[i] := i * (3*i-1) / 2
+
+ps = new set
+
+ps.put[pent[1]]
+
+for i = 2 to 1 million
+{
+	p = pent[i]
+	ps.put[p]
+	for j = 1 to i - 1
+	{
+		pj = pent[j]
+		pk = p - pj
+		if ps.contains[pk]
+		{
+			d = pj - pk
+			if ps.contains[d]
+			{
+				println["found sum ($i,$j) $pj + $pk = $p"]
+				println["ddddddddddddddddddd = $d"]
+			}
+		}
+	}
+}

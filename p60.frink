@@ -1,0 +1,58 @@
+permutable[l,top] :=
+{
+	for i = 0 to top - 1
+	for j = i+1 to top
+	{
+		a = l@i
+		b = l@j
+		if not isPrime[parseInt["$a$b"]]
+			return FALSE
+		if not isPrime[parseInt["$b$a"]]
+			return FALSE
+	}
+	return TRUE
+}
+2 3 5 7 11
+c=0
+a = new array
+a@0 = 673
+a@1 = 109
+if permutable[a,1]
+{
+	println["$a pass"]
+}
+ms = 9 billion
+a@0 = 11
+while TRUE
+{
+	a@1 = 7
+	while a@1 < a@0
+	{
+		a@2 = 5
+		if permutable[a,1]
+		while a@2 < a@1
+		{
+			a@3 = 3
+			if permutable[a,2]
+			while a@3 < a@2
+			{
+				a@4 = 2
+				if permutable[a,3]
+				while a@4 < a@3
+				{
+					c = c + 1
+					if permutable[a,4]
+					{
+						s = sum[a]
+						println["s=$s a=$a"]
+					}
+					a@4 = nextPrime[a@4]
+				}
+				a@3 = nextPrime[a@3]
+			}
+			a@2 = nextPrime[a@2]
+		}
+		a@1 = nextPrime[a@1]
+	}
+	a@0 = nextPrime[a@0]
+}

@@ -1,0 +1,34 @@
+circularPrime[n] :=
+{
+	var sn = "$n"
+	if sn =~ %r/[024568]/
+		return False
+	println["passed regex for $sn"]
+	var l=length[sn]
+	var candidate = right[sn,1] + left[sn, l-1]
+	do
+	{
+		f = factor[parseInt[candidate]]
+		println["candidate=$candidate factors=$f"]
+		if not isPrime[parseInt[candidate]]
+			return 0
+		candidate = right[candidate,1] + left[candidate,l-1]
+	} while candidate <> sn
+	println["$sn circular!!!"]
+	return 1
+}
+
+var c = 13
+var p = nextPrime[97]
+
+do
+{
+	if circularPrime[p]==1
+	{
+		c=c+1
+		println["circular $p c=$c"]
+	}
+	p = nextPrime[p]
+} while p < 1000000
+
+println["c=$c p=$p"]

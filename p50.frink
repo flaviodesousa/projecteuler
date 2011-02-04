@@ -1,0 +1,24 @@
+ps=[]
+p=2
+len=0
+while p < 1 million
+{
+	ps.push[p]
+	p = nextPrime[p]
+}
+sz=length[ps]-1
+for i = 0 to sz
+{
+	sm=ps@i
+	for j=i+1 to sz
+	{
+		sm=sm+ps@j
+		if sm >= 1 million
+			break
+		if j-i+1>len and isPrime[sm]
+		{
+			len = j - i + 1
+			println["Found $sm [$i,$j] -> $len"]
+		}
+	}
+}

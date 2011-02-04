@@ -1,0 +1,27 @@
+score[n] :=
+{
+	var soma = 0
+	for [s] char[n]
+		soma = soma + s - 64
+	return soma
+}
+
+names = []
+println["loading..."]
+for [name] read["file:///D:\\Users\\fssousa\\Desktop\\projecteuler\\names.txt"] =~ %r/"(\w+)"/g
+{
+	names.push[name]
+}
+
+sort[names]
+
+total = 0
+pos = 1
+for [name] names
+{
+	s = score[name] * pos
+	total = total + s
+	println["p=$pos score=$s n=$name total=$total"]
+	pos = pos + 1
+}
+

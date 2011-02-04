@@ -1,0 +1,12 @@
+a=0
+b=1
+var t
+c=0
+do
+{
+	t=a+b
+	a=b
+	b=t
+	c=c+1
+	println["c=$c a=$a b=$b"]
+} while length["$a"]<1000

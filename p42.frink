@@ -1,0 +1,27 @@
+
+score[n] :=
+{
+	if length[n] == 1
+		return char[n] - 64
+	var soma = 0
+	for [s] char[n]
+		soma = soma + s - 64
+	return soma
+}
+
+triangles = new set
+for i = 1 to 1000
+	triangles.put[i*(i+1)/2]
+println["triangles=$triangles"]
+
+println["loading..."]
+count=0
+for [word] read["file:///D:\\Users\\fssousa\\Desktop\\projecteuler\\words.txt"] =~ %r/"(\w+)"/g
+{
+	sc=score[word]
+	if triangles.contains[sc]
+	{
+		count=count+1
+		println["$count $sc $word"]
+	}
+}

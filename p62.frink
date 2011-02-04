@@ -1,0 +1,16 @@
+sortDigits[n] := char[sort[char["$n"]]]
+perms = new dict
+i=2
+while TRUE
+{
+	s = sortDigits[i^3]
+	if perms@s == undef
+		perms@s = new set
+	(perms@s).put[i]
+	if length[i] >= 3
+	{
+		p = perms@s
+		println["$i: $p [$s]"]
+	}
+	i=i+1
+}

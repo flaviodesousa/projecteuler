@@ -1,0 +1,28 @@
+isPerm[a,b,c] :=
+{
+	aa=char[sort[char["$a"]]]
+	bb=char[sort[char["$b"]]]
+	cc=char[sort[char["$c"]]]
+	//println["$a $b $c -> $aa $bb $cc"]
+	if aa==bb and bb==cc
+		return TRUE
+	return FALSE
+}
+
+p=nextPrime[999]
+ps=[]
+while p <= 9999
+{
+	ps.push[p]
+	p = nextPrime[p]
+}
+
+for [p2] ps
+for [p1] ps
+{
+	if p1 >= p2
+		break
+	p3 = 2*p2 - p1
+	if isPrime[p3] and p3 < 10 thousand and isPerm[p1,p2,p3]
+		println["$p1 $p2 $p3"]
+}

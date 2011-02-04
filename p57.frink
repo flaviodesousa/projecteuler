@@ -1,0 +1,20 @@
+expand[n,limit] :=
+{
+	if n < limit
+		return 2+1/expand[n+1,limit]
+	else
+		return 2
+}
+
+ct = 0
+for i = 0 to 1000
+{
+	x = 1 + 1/expand[0,i]
+	n = numerator[x]
+	d = denominator[x]
+	if length["$n"] > length["$d"]
+	{
+		ct=ct+1
+		println["($ct) $i -> $x"]
+	}
+}

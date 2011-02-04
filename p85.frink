@@ -1,0 +1,30 @@
+nearest = 1 billion
+nearestCount = 0
+nearestDimensions = []
+
+for width = 20 to 80
+for height = 20 to 80
+{
+if height > width
+	break
+c=0
+for rwidth = 1 to width
+for rheight = 1 to height
+{
+	w = width - rwidth + 1
+	h = height - rheight + 1
+	c = c + w*h
+}
+diff = abs[c - 2 million]
+if diff < nearest
+{
+	println["nearest? $c $width $height [$diff]"]
+	nearest = diff
+	nearestCount = c
+	nearestDimensions = [width, height]
+}
+println["$width x $height = $c"]
+}
+println["Finished with $nearestCount on $nearestDimensions"]
+area = nearestDimensions@0 * nearestDimensions@1
+println["Area = $area"]
